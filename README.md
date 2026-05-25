@@ -1,7 +1,6 @@
 # Domain-Aware ESM-2 Based Missense Mutation Pathogenicity Prediction
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![Colab](https://img.shields.io/badge/Google-Colab-orange)
 ![Model](https://img.shields.io/badge/Protein%20LM-ESM--2-green)
 ![Task](https://img.shields.io/badge/Task-Missense%20Pathogenicity%20Prediction-purple)
 ![Status](https://img.shields.io/badge/Status-Research%20Prototype-lightgrey)

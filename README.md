@@ -25,7 +25,7 @@ A lightweight, reproducible bioinformatics workflow for predicting whether human
 - [Limitations](#limitations)
 - [Future Work](#future-work)
 - [Authors](#authors)
-- [Citation / Acknowledgments](#citation--acknowledgements)
+- [Citation / Acknowledgements](#citation--acknowledgements)
 
 ---
 
@@ -373,6 +373,6 @@ Course project: **CSE443**
 
 ---
 
-## Citation / Acknowledgments
+## Citation / Acknowledgements
 
 This project uses public biological resources and open-source software, including ClinVar, UniProt, Hugging Face Transformers, ESM-2, Biopython, scikit-learn, pandas, NumPy, PyTorch, Matplotlib, and tqdm.

@@ -21,12 +21,12 @@ A lightweight, reproducible bioinformatics workflow for predicting whether human
 - [Feature Engineering](#feature-engineering)
 - [Models](#models)
 - [Evaluation Strategy](#evaluation-strategy)
-- [Generated Outputs](#generated-outputs)
 - [VUS / Conflicting Variant Case Study](#vus--conflicting-variant-case-study)
 - [Interpretability](#interpretability)
 - [Limitations](#limitations)
 - [Future Work](#future-work)
 - [Authors](#authors)
+- [Citation / Acknowledgments](#citation--acknowledgements)
 
 ---
 
@@ -224,33 +224,6 @@ The project compares three feature settings across two model families:
 | ESM + bio/domain + Logistic Regression | 23 | Combined linear model |
 | ESM + bio/domain + RandomForest | 23 | Final proposed nonlinear model |
 
-### Logistic Regression configuration
-
-```python
-LogisticRegression(
-    max_iter=3000,
-    class_weight="balanced",
-    random_state=42,
-)
-```
-
-The Logistic Regression pipeline also uses median imputation and standard scaling.
-
-### RandomForest configuration
-
-```python
-RandomForestClassifier(
-    n_estimators=300,
-    max_depth=None,
-    min_samples_leaf=2,
-    class_weight="balanced",
-    random_state=42,
-    n_jobs=-1,
-)
-```
-
-The RandomForest pipeline uses median imputation. RandomForest was selected as the final classifier because it captured nonlinear relationships among ESM distances, mutation position, biochemical substitution properties, and UniProt feature annotations.
-
 ---
 
 ## Evaluation Strategy
@@ -281,29 +254,6 @@ selection_score = mean(accuracy, pathogenic_recall, pathogenic_F1)
 ```
 
 This score was used because the project is designed as a screening/prioritization workflow where catching pathogenic-like variants is especially important.
-
----
-
-## Generated Outputs
-
-The notebook generates the following main outputs:
-
-| File | Description |
-|---|---|
-| `final_training_features.csv` | Final labeled feature table with bio/domain and ESM features |
-| `model_comparison_results.csv` | Test-set metrics for all compared models |
-| `hyperparameter_sensitivity_results.csv` | Validation results for Logistic Regression C values and RandomForest tree counts |
-| `confusion_matrix.png` | Confusion matrix for the final model |
-| `roc_curve.png` | ROC curve for the final model |
-| `top_features.png` | Feature importance plot for the final model |
-| `best_model_feature_importance.csv` | Feature importance values |
-| `vus_case_study_predictions.csv` | VUS/conflicting variant prioritization output |
-| `learning_curve_proposed_esm_biodomain_rf.csv` | Learning curve data for the final model |
-| `learning_curve_proposed_esm_biodomain_rf.png` | Learning curve plot for the final model |
-| `learning_curve_biodomain_rf.png` | Learning curve plot for the bio/domain-only RandomForest |
-| `learning_curve_esm_rf.png` | Learning curve plot for the ESM-only RandomForest |
-
-> Note: The notebook does not save a serialized trained model by default. To reuse the trained classifier directly, add a `joblib.dump(best_model, "best_model.joblib")` step after model selection.
 
 ---
 
@@ -385,8 +335,6 @@ Recommended next steps:
 - Compare against established tools such as SIFT, PolyPhen-2, CADD, REVEL, EVE, and AlphaMissense.
 - Add AlphaFold or other structure-derived features.
 - Calibrate prediction thresholds for different use cases, such as high-recall screening or high-precision prioritization.
-- Save the trained pipeline with `joblib` for easier reuse.
-- Package reusable functions into Python modules instead of keeping all code inside one notebook.
 
 ---
 
